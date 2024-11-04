@@ -5,16 +5,15 @@ import MailboxForm from './components/MailboxForm';
 import MailboxList from './components/MailboxList';
 import MailboxDetails from './components/MailboxDetails';
 
-const initialState = [
-  { _id: 1, name: 'Jake Brown', size: 'Large' },
-  { _id: 2, name: 'John Connor', size: 'Medium' }
-];
-
 const App = () => {
   const [mailboxes, setMailboxes] = useState([]);
 
-  const addMailbox = (newMailbox) => {
-    newMailbox._id = mailboxes.length + 1;
+  const addBox = (formData) => {
+    const newMailbox = {
+      _id: mailboxes.length + 1,
+      name: formData.name,
+      size: formData.size
+    };
     setMailboxes([...mailboxes, newMailbox]);
   };
 
@@ -24,7 +23,7 @@ const App = () => {
       <Routes>
         <Route path="/" element={<main><h1>Post Office</h1></main>} />
         <Route path="/mailboxes" element={<MailboxList mailboxes={mailboxes} />} />
-        <Route path="/new-mailbox" element={<MailboxForm addMailbox={addMailbox} />} />
+        <Route path="/new-mailbox" element={<MailboxForm addMailbox={addBox} />} />
         <Route path="/mailboxes/:mailboxId" element={<MailboxDetails mailboxes={mailboxes} />} />
         <Route path="*" element={<h2>Page Not Found!</h2>} />
       </Routes>
