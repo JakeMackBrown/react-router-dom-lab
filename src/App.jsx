@@ -11,7 +11,7 @@ const initialState = [
 ];
 
 const App = () => {
-  const [mailboxes, setMailboxes] = useState(initialState);
+  const [mailboxes, setMailboxes] = useState([]);
 
   const addMailbox = (newMailbox) => {
     newMailbox._id = mailboxes.length + 1;
@@ -22,10 +22,10 @@ const App = () => {
     <>
       <NavBar />
       <Routes>
-        <Route path="/" element={<h2>Post Office</h2>} />
-        <Route path="/new-mailbox" element={<MailboxForm addMailbox={addMailbox} />} />
+        <Route path="/" element={<main><h1>Post Office</h1></main>} />
         <Route path="/mailboxes" element={<MailboxList mailboxes={mailboxes} />} />
-        <Route path="/mailboxes/:id" element={<MailboxDetails mailboxes={mailboxes} />} />
+        <Route path="/new-mailbox" element={<MailboxForm addMailbox={addMailbox} />} />
+        <Route path="/mailboxes/:mailboxId" element={<MailboxDetails mailboxes={mailboxes} />} />
         <Route path="*" element={<h2>Page Not Found!</h2>} />
       </Routes>
     </>
