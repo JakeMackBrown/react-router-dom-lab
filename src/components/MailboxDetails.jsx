@@ -1,17 +1,17 @@
 import { useParams } from 'react-router-dom';
 
-const MailboxDetails = ({ mailboxes }) => {
+const MailboxDetails = (props) => {
   const { mailboxId } = useParams();
-  const mailbox = mailboxes.find(m => m._id === parseInt(mailboxId));
+  const selectedBox = props.mailboxes.find((mailbox) => mailbox._id === Number(mailboxId));
 
-  if (!mailbox) return <h2>Mailbox Not Found!</h2>;
+  if (!selectedBox) return <h2>Mailbox Not Found!</h2>;
 
   return (
     <div>
-      <h2>Mailbox Details</h2>
-      <p>Box Number: {mailbox._id}</p>
-      <p>Boxholder: {mailbox.name}</p>
-      <p>Size: {mailbox.size}</p>
+      <h2>{selectedBox.name}</h2>
+      <p>Box Number: {selectedBox._id}</p>
+      <p>Boxholder: {selectedBox.name}</p>
+      <p>Size: {selectedBox.size}</p>
     </div>
   );
 };
